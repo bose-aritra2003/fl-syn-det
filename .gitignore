@@ -1,0 +1,54 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.so
+*.pyd
+*.dll
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# TensorFlow / Keras
+checkpoint/
+checkpoints/
+logs/
+saved_model/
+*.h5
+*.hdf5
+*.keras
+*.pb
+
+# Flower Federated Learning
+log/
+*.flwr
+
+# Dataset & Large Files
+data/
+datasets/
+dataset/
+fl-syn-det-ds/
+*.zip
+*.tar.gz
+*.rar
+
+# Cache / Temp files
+*.log
+*.out
+.DS_Store
+*.swp
+*.swo
+
+# Python environment files
+pip-log.txt
+pip-delete-this-directory.txt
+flower-server-py311/
+pyenv/
+.venv/
+
+# IDE / Editor settings
+.vscode/
+.idea/
+*.iml
+
+# TensorFlow training artifacts
+events.out.tfevents.*
