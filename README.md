@@ -13,7 +13,7 @@ This project implements **Federated Learning (FL)** for **Deepfake Detection**. 
 
 ---
 
-## Project Structure
+## Dataset Structure
 
 ```
 .
