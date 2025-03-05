@@ -54,4 +54,4 @@ pyenv/
 events.out.tfevents.*
 
 # Training results
-results.json
+results/
