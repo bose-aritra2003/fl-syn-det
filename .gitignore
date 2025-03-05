@@ -55,3 +55,4 @@ events.out.tfevents.*
 
 # Training results
 results/
+results.json
