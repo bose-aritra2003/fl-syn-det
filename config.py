@@ -1,6 +1,5 @@
 # Server Configuration
 NUM_ROUNDS = 50  # Number of federated learning rounds
-SERVER_ADDRESS = "localhost:5050"
 
 # Dataset Paths
 SERVER_TEST_PATH = "dataset/server/test/"

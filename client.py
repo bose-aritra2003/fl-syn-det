@@ -5,6 +5,7 @@ import flwr as fl
 import tensorflow as tf
 from utils import load_dataset, get_model
 
+server_address = "10.24.41.216:5050" # Replace with address where the server is running
 
 # Define Flower client
 class FLClient(fl.client.NumPyClient):
@@ -73,7 +74,7 @@ def main():
     )    
 
     client = FLClient(model, client_id, train_images, train_labels, test_images, test_labels)
-    fl.client.start_numpy_client(server_address=config.SERVER_ADDRESS, client=client)
+    fl.client.start_numpy_client(server_address=server_address, client=client)
 
 
 if __name__ == "__main__":

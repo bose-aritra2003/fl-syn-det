@@ -84,7 +84,6 @@ Modify **`config.py`** to adjust **FL rounds, dataset path, server address**.
 ```python
 # config.py
 NUM_ROUNDS = 10  # Number of federated learning rounds
-SERVER_ADDRESS = "localhost:8080" # Modify with the actual IPv4 address where the server is running
 
 SERVER_TEST_PATH = "dataset/server/test/"
 CLIENT_TRAIN_PATH_TEMPLATE = "dataset/client_{client_id}/train/"

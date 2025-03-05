@@ -9,6 +9,7 @@ from typing import Dict, Optional, Tuple
 from sklearn.metrics import precision_score, recall_score, f1_score
 from strategies.FedAvgWithCheckpointsAndResultsJSON import FedAvgWithCheckpointsAndResultsJSON
 
+server_address = "0.0.0.0:5050" # Do not change if you are running the server on the development machine
 
 def main():
     model = get_model()
@@ -45,7 +46,7 @@ def main():
         initial_parameters=parameters,
     )
     fl.server.start_server(
-        server_address=config.SERVER_ADDRESS, 
+        server_address=server_address, 
         config=fl.server.ServerConfig(num_rounds=config.NUM_ROUNDS), 
         strategy=strategy
     )
