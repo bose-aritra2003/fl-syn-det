@@ -6,6 +6,7 @@ from glob import glob
 import tensorflow as tf
 from utils import load_dataset
 from typing import Dict, Optional, Tuple
+from sklearn.metrics import precision_score, recall_score, f1_score
 from models.EfficientNetB0Pretrained import EfficientNetB0Pretrained
 from strategies.FedAvgWithCheckpointsAndResultsJSON import FedAvgWithCheckpointsAndResultsJSON
 
@@ -55,12 +56,37 @@ def get_evaluate_fn(model):
     test_images, test_labels = load_dataset(config.SERVER_TEST_PATH)
     print("Test images shape:", test_images.shape)
     print("Test label shape:", test_labels.shape)
+
     def evaluate(server_round: int, parameters: fl.common.NDArrays, config: Dict[str, fl.common.Scalar]) -> Optional[Tuple[float, Dict[str, fl.common.Scalar]]]:
         print(f"[Server] Evaluating round {server_round}...")
         model.set_weights(parameters)
+
+        # Get raw predictions
+        predictions = model.predict(test_images, verbose=0)
+        predicted_classes = (predictions > 0.5).astype(int)  # Convert to binary labels
+
+        # Compute standard metrics
         loss, accuracy = model.evaluate(test_images, test_labels, verbose=0)
-        print(f"[Server] Test Accuracy: {accuracy}")
-        return loss, {"accuracy": accuracy}
+
+        # Compute additional metrics using sklearn
+        precision = precision_score(test_labels, predicted_classes, pos_label=1)  # Precision for "fake" (1)
+        recall = recall_score(test_labels, predicted_classes, pos_label=1)  # Recall for "fake" (1)
+        f1 = f1_score(test_labels, predicted_classes, pos_label=1)  # F1-score for "fake" (1)
+
+        # Compute AUC using TensorFlow's built-in metric
+        auc_metric = tf.keras.metrics.AUC()
+        auc_metric.update_state(test_labels, predictions)
+        auc = auc_metric.result().numpy()
+
+        print(f"[Server] Test Accuracy: {accuracy}, Precision (Fake): {precision}, Recall (Fake): {recall}, F1 (Fake): {f1}, AUC: {auc}")
+
+        return loss, {
+            "accuracy": float(accuracy),
+            "precision_fake": float(precision),
+            "recall_fake": float(recall),
+            "f1_score_fake": float(f1),
+            "auc": float(auc)
+        }
 
     return evaluate
 

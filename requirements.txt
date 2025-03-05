@@ -14,6 +14,7 @@ grpcio==1.70.0
 h5py==3.13.0
 idna==3.10
 iterators==0.0.2
+joblib==1.4.2
 keras==3.8.0
 libclang==18.1.1
 Markdown==3.7
@@ -34,6 +35,8 @@ pycryptodome==3.21.0
 Pygments==2.19.1
 requests==2.32.3
 rich==13.9.4
+scikit-learn==1.6.1
+scipy==1.15.2
 shellingham==1.5.4
 six==1.17.0
 tensorboard==2.16.2
@@ -41,6 +44,7 @@ tensorboard-data-server==0.7.2
 tensorflow==2.16.1
 tensorflow-io-gcs-filesystem==0.37.1
 termcolor==2.5.0
+threadpoolctl==3.5.0
 tomli==2.2.1
 typer==0.9.4
 typing_extensions==4.12.2
