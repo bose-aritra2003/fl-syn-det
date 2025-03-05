@@ -52,3 +52,6 @@ pyenv/
 
 # TensorFlow training artifacts
 events.out.tfevents.*
+
+# Training results
+results.json
