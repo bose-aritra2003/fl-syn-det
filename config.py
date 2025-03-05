@@ -1,5 +1,5 @@
 # Server Configuration
-NUM_ROUNDS = 10  # Number of federated learning rounds
+NUM_ROUNDS = 50  # Number of federated learning rounds
 SERVER_ADDRESS = "localhost:8080"
 
 # Dataset Paths
