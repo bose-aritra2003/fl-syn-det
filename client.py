@@ -31,14 +31,14 @@ class FLClient(fl.client.NumPyClient):
             batch_size=32, 
             verbose=1
         )
-        return model.get_weights(), len(train_images), {}
+        return self.model.get_weights(), len(self.train_images), {}
 
     def evaluate(self, parameters, config):
-        print(f"[Client {client_id}] Evaluating on test dataset...")
-        model.set_weights(parameters)
-        loss, accuracy = model.evaluate(test_images, test_labels, verbose=0)
-        print(f"[Client {client_id}] Test Accuracy: {accuracy}")
-        return loss, len(test_images), {"accuracy": accuracy}
+        print(f"[Client {self.client_id}] Evaluating on test dataset...")
+        self.model.set_weights(parameters)
+        loss, accuracy = self.model.evaluate(self.test_images, self.test_labels, verbose=0)
+        print(f"[Client {self.client_id}] Test Accuracy: {accuracy}")
+        return loss, len(self.test_images), {"accuracy": accuracy}
 
 
 def parse_args():
