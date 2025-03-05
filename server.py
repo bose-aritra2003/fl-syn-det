@@ -4,15 +4,14 @@ import config
 import flwr as fl
 from glob import glob
 import tensorflow as tf
-from utils import load_dataset
+from utils import load_dataset, get_model
 from typing import Dict, Optional, Tuple
 from sklearn.metrics import precision_score, recall_score, f1_score
-from models.EfficientNetB0Pretrained import EfficientNetB0Pretrained
 from strategies.FedAvgWithCheckpointsAndResultsJSON import FedAvgWithCheckpointsAndResultsJSON
 
 
 def main():
-    model = EfficientNetB0Pretrained()
+    model = get_model()
 
     # Check for existing checkpoints
     checkpoint_dir = "checkpoints"

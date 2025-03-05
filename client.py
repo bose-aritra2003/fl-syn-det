@@ -3,8 +3,7 @@ import config
 import argparse
 import flwr as fl
 import tensorflow as tf
-from utils import load_dataset
-from models.EfficientNetB0Pretrained import EfficientNetB0Pretrained
+from utils import load_dataset, get_model
 
 
 # Define Flower client
@@ -65,7 +64,7 @@ def main():
     test_images, test_labels = load_dataset(test_path)    
 
     # Load and compile model
-    model = EfficientNetB0Pretrained()
+    model = get_model()
     model.summary()
     model.compile(
         optimizer='adam', 

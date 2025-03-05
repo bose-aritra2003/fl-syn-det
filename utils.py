@@ -1,6 +1,8 @@
 import os
 import cv2
 import numpy as np
+# from models.EfficientNetB0Pretrained import EfficientNetB0Pretrained
+from models.SimpleCNN import SimpleCNN
 
 # Define class labels
 class_labels = {"real": 0, "fake": 1}
@@ -44,3 +46,8 @@ def load_dataset(dataset_path):
     print(f"Image shape: {images.shape}")
 
     return images, labels
+
+
+def get_model():
+    model = SimpleCNN()
+    return model

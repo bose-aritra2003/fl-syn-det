@@ -6,8 +6,7 @@ import tensorflow as tf
 import json
 import os
 
-from models.EfficientNetB0Pretrained import EfficientNetB0Pretrained
-
+from utils import get_model
 
 class FedAvgWithCheckpointsAndResultsJSON(FedAvg):
     """A strategy that keeps the core functionality of FedAvg unchanged but enables
@@ -39,7 +38,7 @@ class FedAvgWithCheckpointsAndResultsJSON(FedAvg):
         # Convert parameters to ndarrays
         ndarrays = parameters_to_ndarrays(parameters_aggregated)
         # Instantiate model
-        model = EfficientNetB0Pretrained()
+        model = get_model()
         # Apply paramters to model
         model.set_weights(ndarrays)
         # Create directory if it doesn't exist
