@@ -2,7 +2,8 @@ import os
 import cv2
 import numpy as np
 # from models.EfficientNetB0Pretrained import EfficientNetB0Pretrained
-from models.SimpleCNN import SimpleCNN
+# from models.SimpleCNN import SimpleCNN
+from models.EfficientNetV2B0_Custom import EfficientNetV2B0_Custom
 
 # Define class labels
 class_labels = {"real": 0, "fake": 1}
@@ -49,5 +50,5 @@ def load_dataset(dataset_path):
 
 
 def get_model():
-    model = SimpleCNN()
+    model = EfficientNetV2B0_Custom()
     return model
